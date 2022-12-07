@@ -11,10 +11,18 @@ docker pull nvcr.io/nvidia/deepstream:6.1.1-triton
 Run docker and initialize workspace
 
 ``` bash
+docker images
 docker run -it --gpus all --name rlp [DOCKER IMAGE]
 cd /opt/nvidia/deepstream/deepstream-6.1/sources
 git clone https://github.com/NVIDIA-AI-IOT/deepstream_python_apps.git
 cd deepstream_python_apps/apps
+```
+
+In another terminal of local
+
+``` bash
+docker ps -a
+docker cp ./rlp/ [CONTAINER ID]:/opt/nvidia/deepstream/deepstream-6.1/sources/deepstream_python_apps/apps
 ```
 
 Copy `rlp` folder from repo to `deepstream_python_apps/apps`
@@ -39,6 +47,7 @@ cd ../../..
 
 ``` bash
 cd Parser
+export CUDA_VER=11.7
 make
 cp ./libnvdsinfer_custom_impl_Yolo.so ..
 cd ..
@@ -63,8 +72,8 @@ LD_PRELOAD=./libmy_plugin.so /usr/src/tensorrt/bin/trtexec \
 
 ``` bash
 /usr/src/tensorrt/bin/trtexec \
-    --onnx=./yolov4_-1_3_608_608_dynamic.nms.onnx 
-    --saveEngine=./yolov4_-1_3_608_608_dynamic.nms.engine 
+    --onnx=./yolov4_-1_3_608_608_dynamic.nms.onnx \
+    --saveEngine=./yolov4_-1_3_608_608_dynamic.nms.engine \
     --workspace=512
 ```
 
