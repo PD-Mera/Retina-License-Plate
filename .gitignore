@@ -1,0 +1,10 @@
+__pycache__/
+venv/
+/data/licenseplate/
+weights/
+results/
+onnx_trt/
+
+convert_label_format*
+
+*.zip
