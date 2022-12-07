@@ -25,11 +25,11 @@ Data structure
     |-- data
         `--licenseplate/
             |-- train/
-            |   |-- images/
-            |   |   |-- image 1
-            |   |   |-- ...
-            |   |   `-- image n
-            |   `-- label.txt
+                |-- images/
+                |   |-- image 1
+                |   |-- ...
+                |   `-- image n
+                `-- label.txt
 ```
 In `./data/licenseplate/train/images/label.txt`
 
