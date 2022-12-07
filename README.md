@@ -24,7 +24,7 @@ Data structure
 ``` folder
     |-- data
         `--licenseplate/
-            |-- train/
+            `-- train/
                 |-- images/
                 |   |-- image 1
                 |   |-- ...
