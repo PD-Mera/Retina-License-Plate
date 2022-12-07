@@ -8,3 +8,5 @@ onnx_trt/
 convert_label_format*
 
 *.zip
+*.onnx
+*.mp4
