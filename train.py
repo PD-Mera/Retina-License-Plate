@@ -5,7 +5,7 @@ import torch.optim as optim
 import torch.backends.cudnn as cudnn
 import argparse
 import torch.utils.data as data
-from data import LicensePlateDetection, detection_collate, preproc, cfg_mnet, cfg_re50, cfg_re18
+from data import LicensePlateDetection, detection_collate, preproc, cfg_mnet, cfg_re50, cfg_re18, cfg_mobilenetv3
 from layers.modules import MultiBoxLoss
 from layers.functions.prior_box import PriorBox
 import time
@@ -36,6 +36,9 @@ elif args.network == "resnet50":
     cfg = cfg_re50
 elif args.network == "resnet18":
     cfg = cfg_re18
+elif args.network == "mobilenetv3":
+    cfg = cfg_mobilenetv3
+
 
 rgb_mean = (104, 117, 123) # bgr order
 num_classes = 2

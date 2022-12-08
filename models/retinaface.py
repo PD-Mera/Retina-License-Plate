@@ -11,6 +11,23 @@ from models.net import FPN as FPN
 from models.net import SSH as SSH
 
 
+class BackboneMobilenetV3(nn.Module):
+    def __init__(self, layer0, layer1, layer2, layer3):
+        super(BackboneMobilenetV3, self).__init__()
+        self.layer0 = layer0
+        self.layer1 = layer1
+        self.layer2 = layer2
+        self.layer3 = layer3
+    
+    def forward(self, x):
+        x = self.layer0(x)
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+
+        return x
+
+
 
 class ClassHead(nn.Module):
     def __init__(self,inchannels=512,num_anchors=3):
@@ -80,8 +97,19 @@ class RetinaFace(nn.Module):
             else:
                 weights = None
             backbone = models.resnet18(weights=weights)
+        elif cfg['name'] == 'mobilenetv3':
+            import torchvision.models as models
+            if cfg['pretrain']:
+                weights = MobileNet_V3_Small_Weights.DEFAULT
+            else:
+                weights = None
+            backbone = models.mobilenet_v3_small(weights=weights)
 
-
+            layer0 = backbone.features[0:4]
+            layer1 = backbone.features[4:9]
+            layer2 = backbone.features[9:12]
+            layer3 = backbone.features[12]
+            backbone = BackboneMobilenetV3(layer0, layer1, layer2, layer3)
 
         self.body = _utils.IntermediateLayerGetter(backbone, cfg['return_layers'])
         in_channels_stage2 = cfg['in_channel']
