@@ -58,7 +58,7 @@ And the last number is the `conf_label` in `(0.0, 1.0)`
 
 | Backbone | Size |
 | :---: | :---: |
-| [Resnet18](bit.ly/3VFf32H) |  |
+| [Resnet18](https://bit.ly/3VFf32H) | 55MB |
 
 You can download pretrained model from above and put in `./weights` folder
 
