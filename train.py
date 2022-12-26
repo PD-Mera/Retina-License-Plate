@@ -5,7 +5,7 @@ import torch.optim as optim
 import torch.backends.cudnn as cudnn
 import argparse
 import torch.utils.data as data
-from data import LicensePlateDetection, detection_collate, preproc, cfg_mnet, cfg_re50, cfg_re18
+from data import LicensePlateDetection, detection_collate, preproc, cfg_mnet, cfg_re50, cfg_re18, cfg_mobilenetv3
 from layers.modules import MultiBoxLoss
 from layers.functions.prior_box import PriorBox
 import time
@@ -36,6 +36,9 @@ elif args.network == "resnet50":
     cfg = cfg_re50
 elif args.network == "resnet18":
     cfg = cfg_re18
+elif args.network == "mobilenetv3":
+    cfg = cfg_mobilenetv3
+
 
 rgb_mean = (104, 117, 123) # bgr order
 num_classes = 2
@@ -112,7 +115,7 @@ def train():
             if iteration % epoch_size == 0:
                 # create batch iterator
                 batch_iterator = iter(data.DataLoader(dataset, batch_size, shuffle=True, num_workers=num_workers, collate_fn=detection_collate))
-                if (epoch % 10 == 0 and epoch > 0) or (epoch % 5 == 0 and epoch > cfg['decay1']):
+                if (epoch % 100 == 0 and epoch > 0) or (epoch % 50 == 0 and epoch > cfg['decay1']):
                     torch.save(net.state_dict(), save_folder + cfg['name']+ '_epoch_' + str(epoch) + '.pth')
                 epoch += 1
 

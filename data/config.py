@@ -59,3 +59,24 @@ cfg_re18 = {
     'in_channel': 64,
     'out_channel': 256
 }
+
+
+cfg_mobilenetv3 = {
+    'name': 'mobilenetv3',
+    'min_sizes': [[16, 32], [48, 96], [160, 224]],
+    'steps': [8, 16, 32],
+    'variance': [0.1, 0.2],
+    'clip': False,
+    'loc_weight': 2.0,
+    'gpu_train': True,
+    'batch_size': 256,
+    'ngpu': 1,
+    'epoch': 250,
+    'decay1': 190,
+    'decay2': 220,
+    'image_size': 224,
+    'pretrain': True,
+    'return_layers': {'layer0': 1, 'layer1': 2, 'layer2': 3},
+    'in_channel': 12,
+    'out_channel': 96
+}

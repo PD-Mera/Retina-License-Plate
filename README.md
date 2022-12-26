@@ -2,6 +2,8 @@
 
 Use [RetinaFace](https://github.com/biubug6/Pytorch_Retinaface) architecture for License Plate Bounding Boxes and Landmarks Detection
 
+![results](./assets/result.png "result")
+
 ## Dependencies and Installation
 
 ### Environments
@@ -52,7 +54,13 @@ And the last number is the `conf_label` in `(0.0, 1.0)`
 
 ### Pretrain
 
-You can download pretrained model with `resnet18` backbone from [here](bit.ly/3VFf32H)
+(Results with MobilenetV3 is not looking good, I will update in the future)
+
+| Backbone | Size |
+| :---: | :---: |
+| [Resnet18](bit.ly/3VFf32H) |  |
+
+You can download pretrained model from above and put in `./weights` folder
 
 ## Training
 
