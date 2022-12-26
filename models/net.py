@@ -82,6 +82,7 @@ class FPN(nn.Module):
         # names = list(input.keys())
         input = list(input.values())
 
+
         output1 = self.output1(input[0])
         output2 = self.output2(input[1])
         output3 = self.output3(input[2])

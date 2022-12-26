@@ -97,13 +97,6 @@ class RetinaFace(nn.Module):
             else:
                 weights = None
             backbone = models.resnet18(weights=weights)
-        elif cfg['name'] == 'mobilenetv3':
-            import torchvision.models as models
-            # if cfg['pretrain']:
-            #     weights = MobileNet_V3_Small_Weights.DEFAULT
-            # else:
-            #     weights = None
-            backbone = models.mobilenet_v3_small(pretrained=True)
 
             layer0 = backbone.features[0:4]
             layer1 = backbone.features[4:9]
