@@ -98,11 +98,11 @@ class RetinaFace(nn.Module):
                 weights = None
             backbone = models.resnet18(weights=weights)
 
-            layer0 = backbone.features[0:4]
-            layer1 = backbone.features[4:9]
-            layer2 = backbone.features[9:12]
-            layer3 = backbone.features[12]
-            backbone = BackboneMobilenetV3(layer0, layer1, layer2, layer3)
+#             layer0 = backbone.features[0:4]
+#             layer1 = backbone.features[4:9]
+#             layer2 = backbone.features[9:12]
+#             layer3 = backbone.features[12]
+#             backbone = BackboneMobilenetV3(layer0, layer1, layer2, layer3)
 
         self.body = _utils.IntermediateLayerGetter(backbone, cfg['return_layers'])
         in_channels_stage2 = cfg['in_channel']
